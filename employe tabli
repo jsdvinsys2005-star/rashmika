@@ -1,0 +1,66 @@
+// Encapsulation and Polymorphism Example
+class Employee {
+    // Encapsulation: private variables
+    private int id;
+    private String name;
+    private double salary;
+
+    // Constructor
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Getter and Setter methods
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void displayDetails() {
+        System.out.println(id + "\t" + name + "\t" + salary);
+    }
+}
+
+// Polymorphism: Method overriding
+class Manager extends Employee {
+
+    private String department;
+
+    public Manager(int id, String name, double salary, String department) {
+        super(id, name, salary);
+        this.department = department;
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println(getId() + "\t" + getName() + "\t" 
+                + getSalary() + "\t" + department);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Employee table heading
+        System.out.println("Employee Details");
+        System.out.println("-------------------------------------");
+        System.out.println("ID\tName\tSalary\tDepartment");
+        System.out.println("-------------------------------------");
+
+        // Polymorphism: Employee reference holding Manager object
+        Employee emp1 = new Manager(101, "rashmika", 50000, "IT");
+        Employee emp2 = new Manager(102, "Priya", 60000, "HR");
+
+        emp1.displayDetails();
+        emp2.displayDetails();
+    }
+}
