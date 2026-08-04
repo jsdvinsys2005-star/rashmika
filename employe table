@@ -1,0 +1,85 @@
+// Encapsulation and Polymorphism Example - Employee Details
+
+class Employee {
+    // Encapsulation: private variables
+    private int id;
+    private String name;
+    private double salary;
+
+    // Constructor
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Getter and Setter methods
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void displayDetails() {
+        System.out.println(id + "\t" + name + "\t\t" + salary);
+    }
+}
+
+// Polymorphism: Child class
+class Manager extends Employee {
+
+    private double bonus;
+
+    public Manager(int id, String name, double salary, double bonus) {
+        super(id, name, salary);
+        this.bonus = bonus;
+    }
+
+    // Method overriding (Runtime Polymorphism)
+    @Override
+    public void displayDetails() {
+        System.out.println(getId() + "\t" + getName() + "\t\t" 
+                           + (getSalary() + bonus));
+    }
+}
+
+class Developer extends Employee {
+
+    private String language;
+
+    public Developer(int id, String name, double salary, String language) {
+        super(id, name, salary);
+        this.language = language;
+    }
+
+    // Method overriding (Runtime Polymorphism)
+    @Override
+    public void displayDetails() {
+        System.out.println(getId() + "\t" + getName() + "\t\t" 
+                           + getSalary() + "\t" + language);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Employee table heading
+        System.out.println("ID\tName\t\tSalary\tLanguage/Bonus");
+        System.out.println("-----------------------------------------");
+
+        // Polymorphism: Parent reference holding child objects
+        Employee emp1 = new Manager(101, "priyanka", 50000, 10000);
+        Employee emp2 = new Developer(102, "sanjay", 45000, "Java");
+        Employee emp3 = new Employee(103, "khodo", 40000);
+
+        emp1.displayDetails();
+        emp2.displayDetails();
+        emp3.displayDetails();
+    }
+}
